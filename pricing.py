@@ -53,16 +53,14 @@ def get_credentials():
 
 
 def price(inFile):
-    exe = '/Users/drsh/Desktop/Project Repos/Price_Tool/Slic3r.app/contents/MacOS/slic3r'
-    config = '/Users/drsh/Desktop/Project Repos/Price_Tool/config.ini'
-    #inFile = input("what's the path and name of the file include .stl or other extension\n")
-    #inFile = '/Users/drsh/Desktop/Price_Tool/3DHubs_marvin.stl'
+    exe = './Slic3r.app/contents/MacOS/slic3r'
+    config = './config.ini'
     args = [
         exe, 
         '--load', 
         config, 
         '--post-process',
-        '/Users/drsh/Desktop/Project Repos/Price_Tool/gcoder.py',
+        './gcoder.py',
         inFile]
     print(args)
     slic3r = subprocess.Popen(args, stdout = subprocess.PIPE)
@@ -129,7 +127,7 @@ def main():
 def openfile():
     global NAME
     NAME = tkinter.filedialog.askopenfilename(
-        initialdir = '/Users/drsh/home', 
+        initialdir = './examples', 
         title='Select GCode File')
 
 def priceback():
