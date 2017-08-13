@@ -20,3 +20,7 @@ This tool takes a standard .STL file and slices it using generic settings,
 parses the gcode to interpret time to completion of the part, and the volume of
  the part, then sends this information to our Google Sheet for pricing and retu
  rns the calculated price to the user.
+
+ ![alt text](./examples/UI1.png)
+
+ ![alt text](./examples/UI2.png)
