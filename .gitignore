@@ -3,3 +3,4 @@
 bazel-*
 client_secret.json
 Slic3r-Manual/**
+.vscode/**
