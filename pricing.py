@@ -3,7 +3,7 @@ import httplib2
 import os
 import subprocess
 import tkinter
-from tkinter import filedialog, messagebox
+from tkinter import filedialog, messagebox, StringVar
 from subprocess import PIPE
 from apiclient import discovery
 from oauth2client import client
@@ -22,6 +22,10 @@ except ImportError:
 SCOPES = 'https://www.googleapis.com/auth/spreadsheets'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Alpha Pricing tool using slic3r and sheets apis'
+TOP = tkinter.Tk()
+RET_PRICE = StringVar()
+COST = tkinter.Label(TOP, textvariable = RET_PRICE)
+RET_PRICE.set("Please choose a part")
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -112,17 +116,21 @@ def price(inFile):
     result = service.spreadsheets().values().get(spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
     print(values[0][0])
+    return values[0][0]
 
 def main():
-    top = tkinter.Tk()
-    top.title('Pricing Tool')
+    RET_PRICE = StringVar()
+    TOP.title('Pricing Tool')
     values = 0
     Price = tkinter.Label(text=values)
-    B1 = tkinter.Button(top, text='Browse', command=openfile)
+    B1 = tkinter.Button(TOP, text='Browse', command=openfile)
     B1.pack()
-    B2 = tkinter.Button(top, text='Calculate Price', command=priceback)
+    B2 = tkinter.Button(TOP, text='Calculate Price', command=priceback)
     B2.pack()
-    top.mainloop()
+    cost = tkinter.Label(TOP, textvariable = RET_PRICE)
+    cost.pack()
+    COST.pack()
+    TOP.mainloop()
 
 def openfile():
     global NAME
@@ -131,7 +139,7 @@ def openfile():
         title='Select GCode File')
 
 def priceback():
-    price(NAME)
+    RET_PRICE.set(price(NAME))
 
 if __name__ == '__main__':
     main()
