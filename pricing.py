@@ -24,8 +24,10 @@ CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Alpha Pricing tool using slic3r and sheets apis'
 TOP = tkinter.Tk()
 RET_PRICE = StringVar()
+FILE_NAME = StringVar()
+FILE = tkinter.Label(TOP, textvariable = FILE_NAME)
 COST = tkinter.Label(TOP, textvariable = RET_PRICE)
-RET_PRICE.set("Please choose a part")
+FILE_NAME.set("Please choose a part")
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -127,8 +129,7 @@ def main():
     B1.pack()
     B2 = tkinter.Button(TOP, text='Calculate Price', command=priceback)
     B2.pack()
-    cost = tkinter.Label(TOP, textvariable = RET_PRICE)
-    cost.pack()
+    FILE.pack()
     COST.pack()
     TOP.mainloop()
 
@@ -137,6 +138,7 @@ def openfile():
     NAME = tkinter.filedialog.askopenfilename(
         initialdir = './examples', 
         title='Select GCode File')
+    FILE_NAME.set(NAME)
 
 def priceback():
     RET_PRICE.set(price(NAME))
