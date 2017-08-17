@@ -28,6 +28,7 @@ FILE_NAME = StringVar()
 FILE = tkinter.Label(TOP, textvariable = FILE_NAME)
 COST = tkinter.Label(TOP, textvariable = RET_PRICE)
 FILE_NAME.set("Please choose a part")
+NAME = None
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -134,13 +135,16 @@ def main():
     TOP.mainloop()
 
 def openfile():
-    global NAME
     NAME = tkinter.filedialog.askopenfilename(
         initialdir = './examples', 
         title='Select GCode File')
-    FILE_NAME.set(NAME)
+    no_path = NAME.split("/")[-1]
+    FILE_NAME.set(no_path)
 
 def priceback():
+    if NAME is None:
+        FILE_NAME.set("No file selected")
+        return;
     RET_PRICE.set(price(NAME))
 
 if __name__ == '__main__':
