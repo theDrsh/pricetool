@@ -13,6 +13,7 @@ Build a tool which can be deployed on AWS which can be embedded into the
 website to allow a user to upload their part and recieve a quote in a timely 
 manner. Also making the website more interactive and contain more club 
 information would be very beneficial.
+[Proposal Slides](https://docs.google.com/a/mail.csuchico.edu/presentation/d/10ZYKtYSHWn1_eK1kr6l8WTnBeN3-L0caCGtaAOWoAzg/edit?usp=sharing)
 
 #  Current tool:
 
